@@ -1,32 +1,54 @@
-import User from '../models/userModel.js';
-import bcrypt from 'bcryptjs';
+import User from '../models/User.js';
+import { asyncHandler } from '../utils/asyncHandler.js';
+import { ApiError } from '../utils/ApiError.js';
+import { ApiResponse } from '../utils/ApiResponse.js';
+import mongoose from 'mongoose';
 
-export const registerUser = async (req, res) => {
-  const { name, email, password } = req.body;
-  try {
-    const userExists = await User.findOne({ email });
-    if (userExists) return res.status(400).json({ message: 'User already exists' });
 
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const user = await User.create({ name, email, password: hashedPassword });
+const getUserProfile = asyncHandler(async (req, res) => {
+  const { id } = req.params;
 
-    res.status(201).json({ _id: user._id, name: user.name, email: user.email });
-  } catch (err) {
-    res.status(500).json({ message: err.message });
+   if (!mongoose.Types.ObjectId.isValid(id)) {
+      throw new ApiError(400, 'Invalid user ID format');
   }
-};
 
-export const loginUser = async (req, res) => {
-  const { email, password } = req.body;
-  try {
-    const user = await User.findOne({ email });
-    if (!user) return res.status(404).json({ message: 'User not found' });
+  const user = await User.findById(id).select('-password');
 
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) return res.status(401).json({ message: 'Invalid credentials' });
-
-    res.status(200).json({ _id: user._id, name: user.name, email: user.email });
-  } catch (err) {
-    res.status(500).json({ message: err.message });
+  if (!user) {
+    throw new ApiError(404, 'User not found');
   }
-};
+
+  res.status(200).json(new ApiResponse(200, user, 'User profile retrieved successfully'));
+});
+
+
+const updateUserProfile = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  const { name } = req.body; 
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+      throw new ApiError(400, 'Invalid user ID format');
+  }
+
+  if (req.user.id !== id && req.user.role !== 'admin') {
+    throw new ApiError(403, 'Forbidden: You can only update your own profile.');
+  }
+
+  const user = await User.findById(id);
+
+  if (!user) {
+    throw new ApiError(404, 'User not found');
+  }
+
+  if (name) user.name = name;
+
+  const updatedUser = await user.save();
+
+  updatedUser.password = undefined;
+
+  res.status(200).json(new ApiResponse(200, updatedUser, 'User profile updated successfully'));
+});
+
+
+
+export { getUserProfile, updateUserProfile };
