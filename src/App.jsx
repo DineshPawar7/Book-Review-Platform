@@ -1,11 +1,20 @@
-import React from 'react';
+import React from 'react'
+import Home from './pages/Home'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Header from './components/common/Header'
 
-function App() {
+const App = () => {
   return (
-    <div className="min-h-screen bg-gray-200 flex items-center justify-center">
-      <h1 className="text-4xl font-bold text-blue-600">Hello, Tailwind!</h1>
+    <div>
+       <Router>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+      
+      </Routes>
+    </Router>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
