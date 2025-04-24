@@ -9,11 +9,8 @@ import { checkRole } from '../middlewares/roleMiddleware.js';
 import validate from '../middlewares/validateMiddleware.js';
 import { addBookSchema, bookIdParamSchema, getBooksQuerySchema } from '../validators/bookValidators.js';
 
-<<<<<<< HEAD
 import Book from '../models/Book.js';
 
-=======
->>>>>>> b551c7efd10fbfb178189831c0d4033b91215776
 
 const router = express.Router();
 
@@ -24,7 +21,6 @@ router.route('/')
 router.route('/:id')
   .get(validate(bookIdParamSchema, 'params'), getBookById);
 
-<<<<<<< HEAD
   router.post('/:bookId/review', protect, async (req, res) => {
     const { bookId } = req.params;
     const { rating, review } = req.body;
@@ -67,6 +63,3 @@ export default router;
 
 
 
-=======
-export default router;
->>>>>>> b551c7efd10fbfb178189831c0d4033b91215776

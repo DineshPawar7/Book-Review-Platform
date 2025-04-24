@@ -31,7 +31,6 @@ const bookSchema = new mongoose.Schema(
       required: true,
     },
     averageRating: {
-<<<<<<< HEAD
       type: Number,
       default: 0,
       min: 0,
@@ -50,25 +49,13 @@ const bookSchema = new mongoose.Schema(
         createdAt: { type: Date, default: Date.now },
       }
     ]
-=======
-        type: Number,
-        default: 0,
-        min: 0,
-        max: 5,
-    },
-    image: { type: String, required: false },
-    reviewCount: {
-        type: Number,
-        default: 0,
-    }
->>>>>>> b551c7efd10fbfb178189831c0d4033b91215776
+
   },
   {
     timestamps: true,
   }
 );
 
-<<<<<<< HEAD
 bookSchema.methods.updateAverageRating = function() {
   if (this.reviews.length === 0) {
     this.averageRating = 0;
@@ -84,10 +71,4 @@ bookSchema.index({ averageRating: -1 });
 
 const Book = mongoose.model('Book', bookSchema);
 export default Book;
-=======
-bookSchema.index({ title: 'text', author: 'text' }); 
-bookSchema.index({ averageRating: -1 });
 
-const Book = mongoose.model('Book', bookSchema);
-export default Book;
->>>>>>> b551c7efd10fbfb178189831c0d4033b91215776
