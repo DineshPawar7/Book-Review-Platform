@@ -27,7 +27,10 @@ const userSchema = new mongoose.Schema(
       enum: ['user', 'admin'],
       default: 'user',
     },
+<<<<<<< HEAD
     reviews: [{ type: mongoose.Schema.Types.ObjectId, ref: "Review" }],
+=======
+>>>>>>> b551c7efd10fbfb178189831c0d4033b91215776
   },
   {
     timestamps: true,

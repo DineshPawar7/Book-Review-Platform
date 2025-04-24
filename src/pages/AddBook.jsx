@@ -48,7 +48,11 @@ export default function AddBook() {
         },
       });
 
+<<<<<<< HEAD
       navigate("/", { state: { refresh: true } });
+=======
+      navigate("/home", { state: { refresh: true } });
+>>>>>>> b551c7efd10fbfb178189831c0d4033b91215776
       window.location.reload();
     } catch (err) {
       console.error("Upload error:", err.response?.data || err.message);
@@ -57,7 +61,11 @@ export default function AddBook() {
   };
 
   return (
+<<<<<<< HEAD
     <div className="max-w-2xl mx-auto p-6 bg-border shadow-md rounded">
+=======
+    <div className="max-w-2xl mx-auto p-6 bg-white shadow-md rounded">
+>>>>>>> b551c7efd10fbfb178189831c0d4033b91215776
       <h2 className="text-2xl font-bold mb-4">Add a New Book</h2>
       <form onSubmit={handleSubmit} className="space-y-4" encType="multipart/form-data">
         <Input
@@ -103,7 +111,11 @@ export default function AddBook() {
           className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:border-0 file:text-sm file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
         />
         {error && <p className="text-red-500">{error}</p>}
+<<<<<<< HEAD
         <Button type="submit" className="w-full bg-btn text-white hover:bg-hoverBtn">
+=======
+        <Button type="submit" className="w-full bg-blue-600 text-white hover:bg-blue-700">
+>>>>>>> b551c7efd10fbfb178189831c0d4033b91215776
           Submit Book
         </Button>
       </form>

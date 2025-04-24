@@ -9,7 +9,10 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> b551c7efd10fbfb178189831c0d4033b91215776
   const fetchBooks = async () => {
     try {
       const response = await api.get("/books");
@@ -80,8 +83,11 @@ export default function Home() {
               </div>
             </Link>
           ))}
+<<<<<<< HEAD
 
           
+=======
+>>>>>>> b551c7efd10fbfb178189831c0d4033b91215776
         </div>
       )}
     </div>

@@ -15,6 +15,7 @@ module.exports = {
         hoverBtn : 'var(--color-btn-hover)',
         border: 'var(--color-border)',
       } 
+
     },
   },
   plugins: [],
