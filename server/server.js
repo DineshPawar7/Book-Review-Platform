@@ -7,13 +7,17 @@ import { errorHandler } from './middlewares/errorMiddleware.js';
 import { ApiError } from './utils/ApiError.js';
 import logger from './utils/logger.js';
 import multer from 'multer';
-
+import path from 'path';
+import { fileURLToPath } from 'url';
 import authRoutes from './routes/authRoutes.js';
 import bookRoutes from './routes/bookRoutes.js';
 import userRoutes from './routes/userRoutes.js';
 
 dotenv.config();
 connectDB();
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
 
 const app = express();
 
@@ -31,11 +35,11 @@ if (process.env.NODE_ENV === 'development') {
     app.use(morgan('short'));
 }
 
-app.use('/uploads', express.static('uploads'));
+app.use('/uploads', express.static(path.join(__dirname, 'images')));
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, 'uploads/');
+        cb(null, 'uploads/'); 
     },
     filename: (req, file, cb) => {
         cb(null, Date.now() + file.originalname);
@@ -85,4 +89,3 @@ process.on('SIGTERM', () => {
     process.exit(0);
   });
 });
-
