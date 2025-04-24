@@ -36,6 +36,7 @@ const bookSchema = new mongoose.Schema(
         min: 0,
         max: 5,
     },
+    image: { type: String, required: false },
     reviewCount: {
         type: Number,
         default: 0,
