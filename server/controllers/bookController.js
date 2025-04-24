@@ -15,7 +15,7 @@ const getAllBooks = asyncHandler(async (req, res) => {
   const books = await Book.find()
                           .skip(skip)
                           .limit(limit)
-                          .sort({ createdAt: -1 }); // Sort by newest first
+                          .sort({ createdAt: -1 });
 
   res.status(200).json(
     new ApiResponse(
@@ -53,6 +53,8 @@ const addBook = asyncHandler(async (req, res) => {
   const { title, author, isbn, description, publishedDate } = req.body;
   const addedBy = req.user._id;
 
+  const imageUrl = req.file ? `/uploads/${req.file.filename}` : null;
+
   const existingBook = await Book.findOne({ isbn });
   if (existingBook) {
       throw new ApiError(400, `Book with ISBN ${isbn} already exists.`);
@@ -65,6 +67,7 @@ const addBook = asyncHandler(async (req, res) => {
     description,
     publishedDate,
     addedBy,
+    image: imageUrl,
   });
 
   res.status(201).json(new ApiResponse(201, book, 'Book added successfully'));

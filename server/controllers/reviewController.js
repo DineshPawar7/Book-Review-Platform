@@ -28,36 +28,39 @@ const getReviewsByBook = asyncHandler(async (req, res) => {
 
 
 const addReview = asyncHandler(async (req, res) => {
-  const { book: bookId, rating, comment } = req.body; 
-  const userId = req.user._id;
+  const { book: bookId, rating, comment } = req.body;
+  const userId = req.user?._id; 
 
-   if (!bookId || !mongoose.Types.ObjectId.isValid(bookId)) {
-      throw new ApiError(400, 'Valid book ID is required');
+  console.log('Received bookId:', bookId);
+  console.log('Received userId:', userId);
+
+  if (!bookId || !mongoose.Types.ObjectId.isValid(bookId)) {
+     throw new ApiError(400, 'Valid book ID is required');
   }
 
   const book = await Book.findById(bookId);
   if (!book) {
-    throw new ApiError(404, 'Book not found');
+     throw new ApiError(404, 'Book not found');
   }
 
   const existingReview = await Review.findOne({ book: bookId, user: userId });
   if (existingReview) {
-    throw new ApiError(400, 'You have already reviewed this book');
+     throw new ApiError(400, 'You have already reviewed this book');
   }
 
   const review = await Review.create({
-    book: bookId,
-    user: userId,
-    rating,
-    comment,
+     book: bookId,
+     user: userId,
+     rating,
+     comment,
   });
 
-
   const populatedReview = await review.populate('user', 'name');
-
-
   res.status(201).json(new ApiResponse(201, populatedReview, 'Review submitted successfully'));
 });
+
+
+
 
 
 
