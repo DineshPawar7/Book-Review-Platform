@@ -42,7 +42,6 @@ export default function Home() {
 
   return (
     <div className="max-w-6xl mx-auto p-6">
-      <h1 className="text-3xl font-bold mb-6">Books Library</h1>
 
       <input
         type="text"
