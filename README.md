@@ -1,12 +1,58 @@
-# React + Vite
+# Book Review Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a **Book Review Platform** built using **React** for the frontend and **Node.js/Express** for the backend. The platform allows users to view, add, and review books. Users can also register/login to access the platform features.
 
-Currently, two official plugins are available:
+## **Tech Stack & Tools Used**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### **Frontend**
+- **React**: JavaScript library for building user interfaces.
+- **React Router**: For handling routing/navigation between different views (e.g., Login, Register, Books List, etc.).
+- **Axios**: For making HTTP requests to the backend API.
+- **Tailwind CSS**: For styling and building responsive designs quickly.
+- **Vite**: Build tool and development server for faster builds and HMR.
 
-## Expanding the ESLint configuration
+### **Backend**
+- **Node.js**: JavaScript runtime for the backend.
+- **Express.js**: Web framework for Node.js to build APIs.
+- **MongoDB**: NoSQL database for storing book and user data.
+- **Mongoose**: ODM (Object Data Modeling) library for MongoDB to interact with the database.
+- **JWT (JSON Web Token)**: For handling authentication and authorization.
+- **Bcryptjs**: For password hashing and comparison.
+- **Multer**: For handling file uploads (used for book image uploads).
+- **dotenv**: For managing environment variables.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### **Development Tools**
+- **Nodemon**: For auto-restarting the server during development.
+- **ESLint**: For maintaining code quality and consistency.
+
+## **Features**
+
+1. **User Authentication:**
+   - Register and login functionality with JWT-based authentication.
+   - Password hashing and comparison using Bcrypt.js.
+
+2. **Book Management:**
+   - Users can add a new book with details like title, author, ISBN, description, and published date.
+   - Books are displayed in a paginated list.
+
+3. **Book Reviews:**
+   - Users can leave reviews for books with a rating and comment.
+   - Reviews are linked to users and displayed under the respective book.
+
+4. **Image Upload:**
+   - Books can have an associated image (cover) uploaded by the user.
+
+5. **Responsive Design:**
+   - The frontend is styled with Tailwind CSS and is fully responsive across devices.
+
+6. **Admin and User Roles:**
+   - Only registered users can leave reviews.
+   - Admins can manage books and reviews (future enhancement).
+
+## **Setup Instructions**
+
+### **Clone the repository:**
+
+   ```bash
+   git clone https://github.com/DineshPawar7/Book-Review-Platform.git
+   cd book-review-platform
