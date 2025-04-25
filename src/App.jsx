@@ -8,6 +8,7 @@ import Login from './pages/LoginPage';
 import AddBook from "./pages/AddBook";
 import BookDetail from './pages/BookDetailsPage';
 import BookList from './pages/BookListPage';
+import Docs from './pages/docs';
 
 
 const App = () => {
@@ -18,7 +19,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/booklist" element={<BookList />} />
-
+        <Route path="/routes" element={<Docs />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/admin/books/add" element={<AddBook />} />

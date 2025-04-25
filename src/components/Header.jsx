@@ -17,7 +17,7 @@ const Header = () => {
             <Link to="/booklist" className="hover:text-hover">Book List</Link>
           </li>
           <li>
-            <Link to="/contact" className="hover:text-hover">Contact</Link>
+            <Link to="/routes" className="hover:text-hover">Routes</Link>
           </li>
         </ul>
       </nav>
